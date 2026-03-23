@@ -1,0 +1,6 @@
+create table employee
+(employee_id number,
+emp_name string,
+emp_sal number,
+emp_address_txt varchar2(500)
+)
