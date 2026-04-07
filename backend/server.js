@@ -24,7 +24,6 @@ app.use(helmet({
   crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" }
 }));
 
-// CRITICAL: CORS must be configured BEFORE routes
 app.use(cors({
   origin: ['https://app2.hiffaitechsolutions.com', 'https://hiffaitechsolutions.com'],
   credentials: true,
