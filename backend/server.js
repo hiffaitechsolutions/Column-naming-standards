@@ -26,13 +26,10 @@ app.use(helmet({
 
 // CRITICAL: CORS must be configured BEFORE routes
 app.use(cors({
-  origin: true, // Allow all origins in development
+  origin: ['https://app2.hiffaitechsolutions.com', 'https://hiffaitechsolutions.com'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
-  exposedHeaders: ['Set-Cookie'],
-  preflightContinue: false,
-  optionsSuccessStatus: 204
 }));
 
 // Handle preflight requests
