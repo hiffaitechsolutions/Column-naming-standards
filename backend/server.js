@@ -25,10 +25,25 @@ app.use(helmet({
 }));
 
 app.use(cors({
-  origin: ['https://app2.hiffaitechsolutions.com', 'https://hiffaitechsolutions.com'],
+  origin: function(origin, callback) {
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'https://app2.hiffaitechsolutions.com',
+      'https://hiffaitechsolutions.com',
+      process.env.FRONTEND_URL,
+    ].filter(Boolean);
+    
+    // Allow requests with no origin (Postman, mobile apps)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Cookie'],
 }));
 
 // Handle preflight requests
